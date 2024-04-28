@@ -1,0 +1,5 @@
+org_id remap_id
+course.concept 0
+course.school 1
+course.teacher 2
+course.field 3
