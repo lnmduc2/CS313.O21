@@ -53,9 +53,27 @@ def get_course(db: Session, course_id: str, detail: bool):
     if detail:
         course_res['prerequisites'] = course.prerequisites
         course_res['about'] = course.about
+        course_res['n_teachers'] = len(course.teachers_collection)
+        course_res['n_fields'] = len(course.fields_collection)
         course_res['n_users'] = len(course.user_courses_collection)
         course_res['n_videos'] = len(course.videos_collection)
         course_res['n_exercises'] = len(course.exercises_collection)
+
+        course_res['teachers'] = [
+            {
+                'id': teacher.id,
+                'name': teacher.name
+            }
+            for teacher in course.teachers_collection
+        ]
+        course_res['fields'] = [
+            {
+                'id': field.id,
+                'name': field.name
+            }
+            for field in course.fields_collection
+        ]
+
         course_res['videos'] = [
             {
                 'id': video.id,
