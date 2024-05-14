@@ -9,6 +9,7 @@ export default async function CourseEnrolledTable() {
 
   const { userID, setUserID, userList } = useContext(PageContext);
   const { setCourseID } = useContext(PageContext);
+  console.log(`USER ID: ${userID}`);
 
   // Hàm xử lí event navigate sang course-info/{courseID}
   const router = useRouter();
@@ -22,6 +23,7 @@ export default async function CourseEnrolledTable() {
     // Hàm fetch list courses mà userID đăng kí
     const fetchUserCourses = async () => {
       if (userID) {
+        console.log(`USER ID: ${userID}`);
         const response = await fetch(
           `http://localhost:8000/user/id/${userID}?detail=true`
         );

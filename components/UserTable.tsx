@@ -7,12 +7,19 @@ import { PageContext, IndexContext } from "@/app/layout";
 export default function UserTable() {
   const router = useRouter();
 
-  const { userID, userName, userList, setUserList, setShowNoResultsModal } =
-    useContext(PageContext);
+  const {
+    userID,
+    setUserID,
+    userName,
+    userList,
+    setUserList,
+    setShowNoResultsModal,
+  } = useContext(PageContext);
 
   const { isLoadingUsers, setIsLoadingUsers } = useContext(IndexContext);
 
-  const handleNavigateToUserInfo = (userId: string | null) => {
+  const handleNavigateToUserInfo = (userId: string) => {
+    setUserID(userId);
     router.push(`/user-info/${userId}`);
   };
 
