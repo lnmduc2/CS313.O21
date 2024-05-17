@@ -30,10 +30,10 @@ export default async function CourseTrendingTable(): Promise<JSX.Element> {
   }, []);
 
   return (
-    <div>
+    <div className="max-h-56 overflow-y-scroll">
       <p>Trending courses</p>
       <table className="table-auto w-full">
-        <thead>
+        <thead className="sticky top-0 bg-purple-600 text-white">
           <tr className="bg-purple-600 text-white">
             <th className="p-2 border-b-2 border-black-600">Name</th>
             <th className="p-2 border-b-2 border-black-600">Schools</th>

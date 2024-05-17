@@ -42,7 +42,6 @@ export default function UserTable() {
           }
 
           const responses = await Promise.all(requests);
-
           for (const response of responses) {
             if (!response.ok) {
               throw new Error(`HTTP error: ${response.status}`);
@@ -73,7 +72,7 @@ export default function UserTable() {
 
   return (
     <table className="min-w-full table-auto border-collapse text-left text-sm my-4">
-      <thead>
+      <thead className="sticky top-0 bg-purple-600 text-white">
         <tr className="bg-purple-600 text-white">
           <th className="p-2 border-b-2 border-black-600">User ID</th>
           <th className="p-2 border-b-2 border-black-600">Username</th>

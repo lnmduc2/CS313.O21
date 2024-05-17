@@ -33,8 +33,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-CS313.O21\database-preperation
-database-preperation/sql-files/insert_data.sql
+
+# databases
+database-preperation\sql-files\insert_data.sql
+database-preperation\sql-files\create_table.sql
 
 # pretrained
 *.pth

@@ -10,12 +10,26 @@ export type Exercise = {
   chapter: string | null;
 };
 
+export type Teacher = {
+  id: string | null;
+  name: string | null;
+};
+
+export type Field = {
+  id: string | null;
+  name: string | null;
+};
+
 export type Course = {
   id: string;
   name: string | null;
   enroll_time?: string | null;
   n_courses?: number | null;
   schools?: string[] | [];
+  n_teachers?: number | null;
+  teachers?: Teacher[] | [];
+  n_fields?: number | null;
+  fields?: Field[] | null;
   prerequisites?: string[] | [];
   about?: string | null;
   n_users?: number | null;

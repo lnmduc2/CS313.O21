@@ -1,15 +1,17 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from .course_recommendation import course_recommender
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
+
 from . import crud, schemas
 from .database import SessionLocal, engine
 
+app = FastAPI()
+# Set up CORS
 origins = [
     "http://localhost:3000",
-    "http://localhost:8080",
 ]
-app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
