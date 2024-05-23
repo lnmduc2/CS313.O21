@@ -120,11 +120,11 @@ def load_fm(pretrained, n_users, n_courses, n_entities, device='cpu'):
 
     return model
 
-bprmf = load_bprmf(
+kgat = load_bprmf(
     'api/course_recommendation/pretrained_models/BPRMF_epoch40.pth',
     n_users, n_courses, device)
 
-kgat = load_kgat(
+bprmf = load_kgat(
     'api/course_recommendation/pretrained_models/KGAT_epoch45.pth', 
     n_users, n_entities, n_relations, device)
 
@@ -147,9 +147,9 @@ def recommend(user_ids: list, model_type: str = 'kgat', top_k: int = 5, batch_si
 
             with torch.no_grad():
                 if model_type == 'bprmf':
-                    batch_scores = bprmf(batch_user_ids, course_ids, is_train=False)       # (n_batch_users, n_items)
+                    batch_scores = bprmf(batch_user_ids, course_ids, mode='predict')       # (n_batch_users, n_items)
                 elif model_type == 'kgat':
-                    batch_scores = kgat(batch_user_ids, course_ids, mode='predict')
+                    batch_scores = kgat(batch_user_ids, course_ids, is_train=False)
                 else:
                     raise 'model type invalid'
             batch_scores = batch_scores.cpu()
