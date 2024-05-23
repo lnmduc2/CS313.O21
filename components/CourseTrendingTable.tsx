@@ -30,32 +30,29 @@ export default async function CourseTrendingTable(): Promise<JSX.Element> {
   }, []);
 
   return (
-    <div className="max-h-56 overflow-y-scroll">
-      <p>Trending courses</p>
-      <table className="table-auto w-full">
-        <thead className="sticky top-0 bg-purple-600 text-white">
-          <tr className="bg-purple-600 text-white">
-            <th className="p-2 border-b-2 border-black-600">Name</th>
-            <th className="p-2 border-b-2 border-black-600">Schools</th>
-            <th className="p-2 border-b-2 border-black-600">Number of users</th>
+    <table className="table-auto w-full">
+      <thead className="sticky top-0 bg-purple-600 text-white">
+        <tr className="bg-purple-600 text-white">
+          <th className="p-2 border-b-2 border-black-600">Name</th>
+          <th className="p-2 border-b-2 border-black-600">Schools</th>
+          <th className="p-2 border-b-2 border-black-600">Number of users</th>
+        </tr>
+      </thead>
+      <tbody>
+        {courseTrendingList.map((course, index) => (
+          <tr
+            key={index}
+            className={`${index % 2 === 0 ? "bg-gray-200" : "bg-white"} hover:bg-green-300`}
+            onClick={() => handleNavigateToCourseInfo(course.id)}
+          >
+            <td className="px-4 py-2">{renderFieldValue(course.name)}</td>
+            <td className="px-4 py-2">
+              {renderFieldValue(course.schools.join(", "))}
+            </td>
+            <td className="px-4 py-2">{renderFieldValue(course.n_users)}</td>
           </tr>
-        </thead>
-        <tbody>
-          {courseTrendingList.map((course, index) => (
-            <tr
-              key={index}
-              className={`${index % 2 === 0 ? "bg-gray-200" : "bg-white"} hover:bg-green-300`}
-              onClick={() => handleNavigateToCourseInfo(course.id)}
-            >
-              <td className="px-4 py-2">{renderFieldValue(course.name)}</td>
-              <td className="px-4 py-2">
-                {renderFieldValue(course.schools.join(", "))}
-              </td>
-              <td className="px-4 py-2">{renderFieldValue(course.n_users)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 }

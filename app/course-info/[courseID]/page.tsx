@@ -104,19 +104,24 @@ export default function Home() {
       <div className="border-4 border-indigo-600 w-1 h-full m-4"></div>
 
       <div className="w-full">
-        <div className="max-h-64 overflow-y-scroll my-4">
+        <div className="flex flex-col my-8">
           <p>Videos({course?.videos?.length ?? 0})</p>
-          <Suspense fallback={<CourseInfoSkeletonLoader />}>
-            {/* @ts-expect-error Server Component */}
-            <VideoTable />
-          </Suspense>
+          <div className="max-h-56 overflow-y-scroll">
+            <Suspense fallback={<CourseInfoSkeletonLoader />}>
+              {/* @ts-expect-error Server Component */}
+              <VideoTable />
+            </Suspense>
+          </div>
         </div>
-        <div className="max-h-64 overflow-y-scroll my-4">
+
+        <div className="flex flex-col my-8">
           <p>Exercises({course?.exercises?.length ?? 0})</p>
-          <Suspense fallback={<CourseInfoSkeletonLoader />}>
-            {/* @ts-expect-error Server Component */}
-            <ExerciseTable />
-          </Suspense>
+          <div className="max-h-56 overflow-y-scroll">
+            <Suspense fallback={<CourseInfoSkeletonLoader />}>
+              {/* @ts-expect-error Server Component */}
+              <ExerciseTable />
+            </Suspense>
+          </div>
         </div>
       </div>
     </div>

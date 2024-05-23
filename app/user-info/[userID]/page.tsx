@@ -14,9 +14,15 @@ import CourseTrendingSkeletonLoader from "../../../app/skeletons/CourseTrendingS
 import CourseRecommendedSkeletonLoader from "../../../app/skeletons/CourseRecommendedSkeletonLoader";
 
 export default function Home() {
-  const { userList } = useContext(PageContext);
+  const { userList, setUserList, userID } = useContext(PageContext);
+  const userListCopy = [...userList];
 
-  let user: User = userList[0];
+  // Filter the copy of userList
+  const userListFiltered = userListCopy.filter(
+    (user: User) => user.id === userID
+  );
+
+  let user: User = userListFiltered[0];
 
   return (
     <div className="overflow-auto">
@@ -41,6 +47,7 @@ export default function Home() {
           </div>
         </div>
         <div className="container mx-auto px-4">
+          <p className="font-bold mx-16 my-4">Recommended Courses</p>
           <div className="overflow-x-auto max-h-56 overflow-y-scroll">
             <Suspense fallback={<CourseEnrolledSkeletonLoader />}>
               {/* @ts-expect-error Server Component */}
@@ -51,17 +58,25 @@ export default function Home() {
       </div>
       <div className="border-4 border-indigo-600 h-1 m-8"></div>
       <div>
-        <p className="font-bold mx-16 my-4">Recommend Courses</p>
         <div className="flex flex-row space-x-4">
-          <Suspense fallback={<CourseTrendingSkeletonLoader />}>
-            {/* @ts-expect-error Server Component */}
-            <CourseTrendingTable />
-          </Suspense>
-
-          <Suspense fallback={<CourseRecommendedSkeletonLoader />}>
-            {/* @ts-expect-error Server Component */}
-            <CourseKgatTable />
-          </Suspense>
+          <div className="flex flex-col">
+            <p>Trending courses</p>
+            <div className="max-h-56 overflow-y-scroll">
+              <Suspense fallback={<CourseTrendingSkeletonLoader />}>
+                {/* @ts-expect-error Server Component */}
+                <CourseTrendingTable />
+              </Suspense>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <p>KGAT recommended courses</p>
+            <div className="max-h-56 overflow-y-scroll">
+              <Suspense fallback={<CourseRecommendedSkeletonLoader />}>
+                {/* @ts-expect-error Server Component */}
+                <CourseKgatTable />
+              </Suspense>
+            </div>
+          </div>
         </div>
       </div>
     </div>

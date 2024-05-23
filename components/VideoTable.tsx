@@ -9,7 +9,7 @@ export default async function VideoTable() {
   const videoList = course?.videos ?? [];
 
   return (
-    <table className="min-w-full table-auto border-collapse text-left text-sm">
+    <table className="table-auto w-full">
       <thead className="sticky top-0 bg-purple-600 text-white">
         <tr className="bg-purple-600 text-white">
           <th className="p-2 border-b-2 border-black-600">Title</th>
