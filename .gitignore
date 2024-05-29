@@ -34,9 +34,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# databases
-database-preperation\sql-files\insert_data.sql
-database-preperation\sql-files\create_table.sql
-
 # pretrained
 *.pth
